@@ -1,0 +1,21 @@
+.topBox{
+    background-color: var(--mantine-color-black);;
+    height: 60px;
+}
+.avatar{
+    margin-top: -40px;
+    border: 3px solid var(--mantine-color-white);
+}
+.button {
+    font-size: 18px;
+    font-weight: 500;
+    height: auto;
+    line-height: 1.2;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    svg{
+        width: 20px;
+        height: 20px;
+    }
+  }
