@@ -32,7 +32,10 @@ interface Data {
   email: string;
   tel: string;
   image: string;
+  linkedinTitle: string;
   linkedin: string;
+  wpTitle: string;
+  saveTitle: string;
 }
 
 export default function App() {
@@ -55,7 +58,23 @@ export default function App() {
 
   function downloadVCard() {
     const vcard =
-      "BEGIN:VCARD\nVERSION:3.0\nPRODID:-//Apple Inc.//iPhone OS 16.1.2//EN\nFN;CHARSET=UTF-8:" + data?.name + " " + data?.surname + "\nN;CHARSET=UTF-8:"+ data?.surname +";" + data?.name + ";;;\nTEL;type=IPHONE;type=CELL;type=VOICE:"+ data?.tel.split(" ").join("") +"\nTITLE;CHARSET=UTF-8:" + data?.title +"\nURL;CHARSET=UTF-8:" + data?.web + "\nEMAIL;type=INTERNET;type=HOME;type=pref:" + data?.email + "\nREV:2023-05-16T18:21:02.665Z\nEND:VCARD";
+      "BEGIN:VCARD\nVERSION:3.0\nPRODID:-//Apple Inc.//iPhone OS 16.1.2//EN\nFN;CHARSET=UTF-8:" +
+      data?.name +
+      " " +
+      data?.surname +
+      "\nN;CHARSET=UTF-8:" +
+      data?.surname +
+      ";" +
+      data?.name +
+      ";;;\nTEL;type=IPHONE;type=CELL;type=VOICE:" +
+      data?.tel.split(" ").join("") +
+      "\nTITLE;CHARSET=UTF-8:" +
+      data?.title +
+      "\nURL;CHARSET=UTF-8:" +
+      data?.web +
+      "\nEMAIL;type=INTERNET;type=HOME;type=pref:" +
+      data?.email +
+      "\nREV:2023-05-16T18:21:02.665Z\nEND:VCARD";
     const blob = new Blob([vcard], {
       type: "text/vcard;charset=utf-8",
     });
@@ -79,7 +98,7 @@ export default function App() {
           />
         </Center>
         <Title ta="center" mt="sm">
-          {data?.name + " " + data?.surname} 
+          {data?.name + " " + data?.surname}
         </Title>
         <Text ta="center" mt="sm" px={50} c="dimmed">
           {data?.title}
@@ -112,7 +131,7 @@ export default function App() {
             radius="xl"
             className={classes.button}
           >
-            Save the contact
+            {data?.saveTitle}
           </Button>
 
           <Button
@@ -127,7 +146,7 @@ export default function App() {
             radius="xl"
             className={classes.button}
           >
-            Chat on WhatsApp
+            {data?.wpTitle}
           </Button>
 
           <Button
@@ -158,20 +177,22 @@ export default function App() {
             {data?.email}
           </Button>
 
-          <Button
-            component="a"
-            href={data?.linkedin}
-            target="_blank"
-            leftSection={<Linkedin />}
-            rightSection={<span />}
-            variant="default"
-            fullWidth
-            justify="space-between"
-            radius="xl"
-            className={classes.button}
-          >
-            Linkedin Profile
-          </Button>
+          {data?.linkedin && (
+            <Button
+              component="a"
+              href={data?.linkedin}
+              target="_blank"
+              leftSection={<Linkedin />}
+              rightSection={<span />}
+              variant="default"
+              fullWidth
+              justify="space-between"
+              radius="xl"
+              className={classes.button}
+            >
+              {data?.linkedinTitle}
+            </Button>
+          )}
 
           <Button
             component="a"
